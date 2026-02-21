@@ -1,7 +1,5 @@
 import os
 from dotenv import load_dotenv
-from typing import Dict, Any
-from pydantic import BaseModel
 from crewai import LLM, Agent, Task, Crew, Process
 from crewai.tools import tool
 from langchain_community.tools import DuckDuckGoSearchRun
@@ -55,8 +53,9 @@ research_crew = Crew(
 )
 
 if __name__ == "__main__":
-    print(" Research Agent Created!")
-    print("\n Research Task Created!")
-    print("\n Launching Research Crew...")
-    # research_result = research_crew.kickoff()
-    # print(research_result.raw)
+    print("? Research Agent Created!")
+    print("\n? Research Task Created!")
+    print("\n?? Launching Research Crew...")
+    research_result = research_crew.kickoff()
+    print(research_result.raw)
+
