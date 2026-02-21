@@ -61,3 +61,23 @@ if __name__ == "__main__":
     research_result = research_crew.kickoff()
     print(research_result.raw)
 
+# 🧠 Define the memory for the Flow
+# The state model, or memory, is like a shared notebook that all agents can read and write to.
+# It persists data throughout the entire workflow execution.
+
+# CODE: Define the state model and add its fields
+class ContentState(BaseModel):
+  """
+  State model that tracks information throughout the content creation workflow.
+
+  Think of this as a form that gets filled out as the workflow progresses:
+  - Start: Only URL is filled
+  - After routing: Content type is determined
+  - After processing: Final content is ready
+  - Throughout: Metadata can be added by any step
+  """
+  url: str = "" # CODE
+  content_type: str = ""  
+  final_content: str = ""  
+  metadata: Dict[str, Any] = {} # CODE
+
