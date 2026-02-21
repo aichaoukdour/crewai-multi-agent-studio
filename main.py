@@ -1,4 +1,6 @@
 import os
+from typing import Dict, Any
+from pydantic import BaseModel
 from dotenv import load_dotenv
 from crewai import LLM, Agent, Task, Crew, Process
 from crewai.tools import tool
