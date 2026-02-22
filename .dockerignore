@@ -1,0 +1,14 @@
+# .git
+.env
+__pycache__
+*.pyc
+.ipynb_checkpoints
+.agent
+.gemini
+brain
+data
+logs
+venv
+.venv
+Dockerfile
+.dockerignore
