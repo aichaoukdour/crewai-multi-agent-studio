@@ -1,4 +1,10 @@
 from flow import ContentRouterFlow
+import agentops
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+agentops.init(api_key=os.getenv("AGENTOPS_API_KEY"))
 
 def main():
     """Main entry point to run the Content Router Flow"""
