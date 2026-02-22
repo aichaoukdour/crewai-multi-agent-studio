@@ -8,4 +8,7 @@ search_tool_instance = DuckDuckGoSearchRun()
 @tool("DuckDuckGo Search")
 def search_tool(query: str) -> str:
     """A tool for searching the web using DuckDuckGo."""
-    return search_tool_instance.run(query)
+    try:
+        return search_tool_instance.run(query)
+    except Exception as e:
+        return f"Error performing search: {str(e)}. Please proceed with available information or try a different approach."

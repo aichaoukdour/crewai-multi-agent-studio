@@ -12,4 +12,5 @@ class ContentState(BaseModel):
   url: str = ""
   content_type: str = ""  
   final_content: str = ""  
+  error: str = ""
   metadata: Dict[str, Any] = {}

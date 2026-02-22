@@ -28,41 +28,53 @@ class ContentRouterFlow(Flow[ContentState]):
     @listen("blog")
     def process_blog_content(self):
         """Process content using blog crew"""
-        researcher, writer = create_blog_agents()
-        tasks = create_blog_tasks(researcher, writer, self.state.url)
-        blog_crew = Crew(
-            agents=[researcher, writer],
-            tasks=tasks,
-            verbose=False
-        )
-        result = blog_crew.kickoff()
-        self.state.final_content = result.raw
-        return "Blog content created"
+        try:
+            researcher, writer = create_blog_agents()
+            tasks = create_blog_tasks(researcher, writer, self.state.url)
+            blog_crew = Crew(
+                agents=[researcher, writer],
+                tasks=tasks,
+                verbose=False
+            )
+            result = blog_crew.kickoff()
+            self.state.final_content = result.raw
+            return "Blog content created"
+        except Exception as e:
+            self.state.error = f"Blog processing failed: {str(e)}"
+            return f"Error: {str(e)}"
 
     @listen("newsletter")
     def process_newsletter_content(self):
         """Process content using newsletter crew"""
-        researcher, writer = create_newsletter_agents()
-        tasks = create_newsletter_tasks(researcher, writer, self.state.url)
-        newsletter_crew = Crew(
-            agents=[researcher, writer],
-            tasks=tasks,
-            verbose=False
-        )
-        result = newsletter_crew.kickoff()
-        self.state.final_content = result.raw
-        return "Newsletter content created"
+        try:
+            researcher, writer = create_newsletter_agents()
+            tasks = create_newsletter_tasks(researcher, writer, self.state.url)
+            newsletter_crew = Crew(
+                agents=[researcher, writer],
+                tasks=tasks,
+                verbose=False
+            )
+            result = newsletter_crew.kickoff()
+            self.state.final_content = result.raw
+            return "Newsletter content created"
+        except Exception as e:
+            self.state.error = f"Newsletter processing failed: {str(e)}"
+            return f"Error: {str(e)}"
 
     @listen("linkedin")
     def process_linkedin_content(self):
         """Process content using LinkedIn crew"""
-        researcher, writer = create_linkedin_agents()
-        tasks = create_linkedin_tasks(researcher, writer, self.state.url)
-        linkedin_crew = Crew(
-            agents=[researcher, writer],
-            tasks=tasks,
-            verbose=False
-        )
-        result = linkedin_crew.kickoff()
-        self.state.final_content = result.raw
-        return "LinkedIn content created"
+        try:
+            researcher, writer = create_linkedin_agents()
+            tasks = create_linkedin_tasks(researcher, writer, self.state.url)
+            linkedin_crew = Crew(
+                agents=[researcher, writer],
+                tasks=tasks,
+                verbose=False
+            )
+            result = linkedin_crew.kickoff()
+            self.state.final_content = result.raw
+            return "LinkedIn content created"
+        except Exception as e:
+            self.state.error = f"LinkedIn processing failed: {str(e)}"
+            return f"Error: {str(e)}"
