@@ -24,6 +24,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application code into the container
 COPY . .
 
+# Set PYTHONPATH to include the src directory
+ENV PYTHONPATH="/app/src:${PYTHONPATH}"
+
 # Expose the port that Streamlit will run on
 EXPOSE 8501
 
