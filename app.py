@@ -1,8 +1,13 @@
 import streamlit as st
 import agentops
 import os
+import sys
 from dotenv import load_dotenv
-from flow import ContentRouterFlow
+
+# Add src to sys.path to allow importing the content_router package
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+from content_router.flow import ContentRouterFlow
 
 # 🎨 Streamlit Page Configuration
 st.set_page_config(

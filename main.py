@@ -1,6 +1,11 @@
-from flow import ContentRouterFlow
-import agentops
+import sys
 import os
+
+# Add src to sys.path to allow importing the content_router package
+sys.path.append(os.path.join(os.path.dirname(__file__), 'src'))
+
+from content_router.flow import ContentRouterFlow
+import agentops
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -33,6 +38,8 @@ def main():
     print(f"URL: {flow.state.url}")
     print(f"Content Type: {flow.state.content_type}")
     print(f"Final Content Length: {len(content)} characters")
+    if flow.state.error:
+        print(f"⚠️ Error: {flow.state.error}")
 
 if __name__ == "__main__":
     main()
