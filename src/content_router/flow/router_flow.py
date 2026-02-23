@@ -1,9 +1,10 @@
 from crewai.flow.flow import Flow, listen, router, start
 from crewai.flow.persistence import persist
 from crewai import Crew
-from models import ContentState
-from agents import create_blog_agents, create_newsletter_agents, create_linkedin_agents
-from tasks import create_blog_tasks, create_newsletter_tasks, create_linkedin_tasks
+
+from content_router.flow.state import ContentState
+from content_router.agents import create_blog_agents, create_newsletter_agents, create_linkedin_agents
+from content_router.tasks import create_blog_tasks, create_newsletter_tasks, create_linkedin_tasks
 
 @persist(verbose=True)
 class ContentRouterFlow(Flow[ContentState]):
@@ -13,11 +14,13 @@ class ContentRouterFlow(Flow[ContentState]):
 
     @start()
     def get_user_input(self):
-        """Get URL and desired content type from user"""
-        url = "https://blog.crewai.com/pwc-choses-crewai/"
-        content_type = "newsletter"
-        self.state.url = url
-        self.state.content_type = content_type
+        """Get URL and desired content type from user if not already set"""
+        if not self.state.url:
+            self.state.url = "https://blog.crewai.com/pwc-choses-crewai/"
+        
+        if not self.state.content_type:
+            self.state.content_type = "newsletter"
+            
         return "Input collected"
 
     @router(get_user_input)

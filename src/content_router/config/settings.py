@@ -6,5 +6,5 @@ from crewai import LLM
 load_dotenv()
 
 # Accessing an LLM
-# Note: Ensure OPENAI_API_KEY is set in your environment or .env file
-AGENT_LLM = LLM(model="openai/gpt-4o-mini")
+# Note: Ensure GROQ_API_KEY is set in your environment or .env file
+AGENT_LLM = LLM(model="groq/llama-3.3-70b-versatile")
