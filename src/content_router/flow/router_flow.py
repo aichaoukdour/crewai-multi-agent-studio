@@ -14,13 +14,11 @@ class ContentRouterFlow(Flow[ContentState]):
 
     @start()
     def get_user_input(self):
-        """Get URL and desired content type from user if not already set"""
-        if not self.state.url:
-            self.state.url = "https://blog.crewai.com/pwc-choses-crewai/"
-        
-        if not self.state.content_type:
-            self.state.content_type = "newsletter"
-            
+        """Get URL and desired content type from user"""
+        url = "https://blog.crewai.com/pwc-choses-crewai/"
+        content_type = "newsletter"
+        self.state.url = url
+        self.state.content_type = content_type
         return "Input collected"
 
     @router(get_user_input)

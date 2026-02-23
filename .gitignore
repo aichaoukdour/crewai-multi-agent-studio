@@ -17,3 +17,4 @@ build/
 
 # Temp files
 README_utf8.md
+*.md.tmp
